@@ -31,5 +31,10 @@ namespace TicTacToe.domain
                 _isFree = true;
             }
         }
+
+        public string Test
+        {
+            get { return "Test"; }
+        }
     }
 }

@@ -62,7 +62,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="domain\AIPlayer.cs" />
     <Compile Include="domain\GameBoard.cs" />
+    <Compile Include="domain\HumanPlayercs.cs" />
+    <Compile Include="domain\Player.cs" />
     <Compile Include="domain\Tile.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

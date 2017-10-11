@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace TicTacToe.domain
 {
-    class HumanPlayercs : Player
+    class HumanPlayer : Player
     {
         private string _name;
         private int _totalScore;
+
+        public HumanPlayer(string name)
+        {
+            Name = name;
+        }
 
         public string Name
         {

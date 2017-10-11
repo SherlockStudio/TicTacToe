@@ -11,6 +11,11 @@ namespace TicTacToe.domain
         private string _name;
         private int _totalScore;
 
+        public AIPlayer()
+        {
+            Name = "Computer";
+        }
+
         public string Name
         {
             get { return _name; }

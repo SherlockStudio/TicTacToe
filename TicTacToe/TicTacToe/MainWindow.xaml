@@ -14,7 +14,7 @@
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Background="Red" Grid.Column="0" />
+        <TextBlock Background="Navy" Grid.Column="0" />
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -26,15 +26,15 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Content="{Binding Board[1].Content}" />
-            <Button Grid.Row="0" Grid.Column="1" Content="{Binding Board[2].Content}" />
-            <Button Grid.Row="0" Grid.Column="2" Content="{Binding Board[3].Content}" />
-            <Button Grid.Row="1" Grid.Column="0" Content="{Binding Board[4].Content}" />
-            <Button Grid.Row="1" Grid.Column="1" Content="{Binding Board[5].Content}" />
-            <Button Grid.Row="1" Grid.Column="2" Content="{Binding Board[6].Content}" />
-            <Button Grid.Row="2" Grid.Column="0" Content="{Binding Board[7].Content}" />
-            <Button Grid.Row="2" Grid.Column="1" Content="{Binding Board[8].Content}" />
-            <Button Grid.Row="2" Grid.Column="2" Content="{Binding Board[9].Content}" />
+            <Button Grid.Row="0" Grid.Column="0" Content="{Binding Board[1].Content}" Click="Button_Click" />
+            <Button Grid.Row="0" Grid.Column="1" Content="{Binding Board[2].Content}" Click="Button_Click" />
+            <Button Grid.Row="0" Grid.Column="2" Content="{Binding Board[3].Content}" Click="Button_Click" />
+            <Button Grid.Row="1" Grid.Column="0" Content="{Binding Board[4].Content}" Click="Button_Click" />
+            <Button Grid.Row="1" Grid.Column="1" Content="{Binding Board[5].Content}" Click="Button_Click" />
+            <Button Grid.Row="1" Grid.Column="2" Content="{Binding Board[6].Content}" Click="Button_Click" />
+            <Button Grid.Row="2" Grid.Column="0" Content="{Binding Board[7].Content}" Click="Button_Click" />
+            <Button Grid.Row="2" Grid.Column="1" Content="{Binding Board[8].Content}" Click="Button_Click" />
+            <Button Grid.Row="2" Grid.Column="2" Content="{Binding Board[9].Content}" Click="Button_Click" />
         </Grid>
     </Grid>
 </Window>

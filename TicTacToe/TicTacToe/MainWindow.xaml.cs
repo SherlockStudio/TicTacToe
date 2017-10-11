@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,13 @@ namespace TicTacToe
         {
             InitializeComponent();
             this.DataContext = new GameBoard();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button) sender;
+            int row = Grid.GetRow(button);
+            int col = Grid.GetColumn(button);
         }
     }
 }

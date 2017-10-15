@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TicTacToe.domain;
+using TicTacToe.viewmodel;
 
 namespace TicTacToe
 {
@@ -22,10 +23,12 @@ namespace TicTacToe
     /// </summary>
     public partial class MainWindow : Window
     {
+        private GameViewModel _gvm;
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new GameBoard();
+            _gvm = new GameViewModel();
+            this.DataContext = _gvm;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,6 +36,19 @@ namespace TicTacToe
             Button button = (Button) sender;
             int row = Grid.GetRow(button);
             int col = Grid.GetColumn(button);
+            if (row == 0) { 
+                var number = col + row + 1;
+                _gvm.Game.GameBoard.Board[number].Content = 5;
+            } else if (row == 1)
+            {
+                var number = col + row + 3;
+                button.Content = "Button " + number;
+            } else if (row == 2)
+            {
+                var number = col + row + 5;
+                button.Content = "Button " + number;
+            }
+            
         }
     }
 }

@@ -26,15 +26,15 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Content="{Binding Board[1].Content}" Click="Button_Click" />
-            <Button Grid.Row="0" Grid.Column="1" Content="{Binding Board[2].Content}" Click="Button_Click" />
-            <Button Grid.Row="0" Grid.Column="2" Content="{Binding Board[3].Content}" Click="Button_Click" />
-            <Button Grid.Row="1" Grid.Column="0" Content="{Binding Board[4].Content}" Click="Button_Click" />
-            <Button Grid.Row="1" Grid.Column="1" Content="{Binding Board[5].Content}" Click="Button_Click" />
-            <Button Grid.Row="1" Grid.Column="2" Content="{Binding Board[6].Content}" Click="Button_Click" />
-            <Button Grid.Row="2" Grid.Column="0" Content="{Binding Board[7].Content}" Click="Button_Click" />
-            <Button Grid.Row="2" Grid.Column="1" Content="{Binding Board[8].Content}" Click="Button_Click" />
-            <Button Grid.Row="2" Grid.Column="2" Content="{Binding Board[9].Content}" Click="Button_Click" />
+            <Button Grid.Row="0" Grid.Column="0" Content="{Binding Game.GameBoard.Board[1].Content}" Click="Button_Click" />
+            <Button Grid.Row="0" Grid.Column="1" Content="{Binding Game.GameBoard.Board[2].Content}" Click="Button_Click" />
+            <Button Grid.Row="0" Grid.Column="2" Content="{Binding Game.GameBoard.Board[3].Content}" Click="Button_Click" />
+            <Button Grid.Row="1" Grid.Column="0" Content="{Binding Game.GameBoard.Board[4].Content}" Click="Button_Click" />
+            <Button Grid.Row="1" Grid.Column="1" Content="{Binding Game.GameBoard.Board[5].Content}" Click="Button_Click" />
+            <Button Grid.Row="1" Grid.Column="2" Content="{Binding Game.GameBoard.Board[6].Content}" Click="Button_Click" />
+            <Button Grid.Row="2" Grid.Column="0" Content="{Binding Game.GameBoard.Board[7].Content}" Click="Button_Click" />
+            <Button Grid.Row="2" Grid.Column="1" Content="{Binding Game.GameBoard.Board[8].Content}" Click="Button_Click" />
+            <Button Grid.Row="2" Grid.Column="2" Content="{Binding Game.GameBoard.Board[9].Content}" Click="Button_Click" />
         </Grid>
     </Grid>
 </Window>

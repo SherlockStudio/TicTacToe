@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TicTacToe.domain
 {
-    class Tile
+    class Tile : INotifyPropertyChanged
     {
         private Boolean _isFree;
         private int _content;
@@ -29,6 +30,7 @@ namespace TicTacToe.domain
             {
                 _content = value;
                 _isFree = true;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Content)));
             }
         }
 
@@ -36,5 +38,7 @@ namespace TicTacToe.domain
         {
             get { return "Test"; }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

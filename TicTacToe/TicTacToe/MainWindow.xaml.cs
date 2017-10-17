@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,17 +39,37 @@ namespace TicTacToe
             int col = Grid.GetColumn(button);
             if (row == 0) { 
                 var number = col + row + 1;
-                _gvm.Game.GameBoard.Board[number].Content = 5;
+                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
             } else if (row == 1)
             {
                 var number = col + row + 3;
-                button.Content = "Button " + number;
+                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.O;
             } else if (row == 2)
             {
                 var number = col + row + 5;
-                button.Content = "Button " + number;
+                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
             }
             
+        }
+
+        
+    }
+
+    class ContentToImage : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            int content = (int)value;
+            if (content == 0)
+            {
+                return 100;
+            }
+            return 10;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

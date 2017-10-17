@@ -10,20 +10,20 @@ namespace TicTacToe.domain
     class Tile : INotifyPropertyChanged
     {
         private Boolean _isFree;
-        private int _content;
+        private string _content;
 
-        public Tile(int content = 0)
+        public Tile(string content = "")
         {
             _isFree = true;
         }
 
         public Boolean Free
         {
-            get { return _content == 0; }
+            get { return _content.Equals(""); }
             set { _isFree = value; }
         }
 
-        public int Content
+        public string Content
         {
             get { return _content; }
             set
@@ -32,11 +32,6 @@ namespace TicTacToe.domain
                 _isFree = true;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Content)));
             }
-        }
-
-        public string Test
-        {
-            get { return "Test"; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

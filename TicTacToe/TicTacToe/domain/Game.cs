@@ -11,6 +11,8 @@ namespace TicTacToe.domain
         private Player _humanPlayer;
         private Player _aiPlayer;
         private GameBoard _gameBoard;
+        private static readonly string _x = "X";
+        private static readonly string _o = "O";
 
         public Game()
         {
@@ -35,6 +37,16 @@ namespace TicTacToe.domain
         {
             get { return _gameBoard; }
             set { _gameBoard = value; }
+        }
+
+        public string X
+        {
+            get { return _x; }
+        }
+
+        public string O
+        {
+            get { return _o; }
         }
     }
 }

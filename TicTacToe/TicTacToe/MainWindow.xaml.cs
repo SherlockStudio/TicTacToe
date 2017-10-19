@@ -58,6 +58,8 @@ namespace TicTacToe
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             _gvm.Game.StartGame();
+            Button start = (Button)sender;
+            start.IsEnabled = false;
         }
     }
 

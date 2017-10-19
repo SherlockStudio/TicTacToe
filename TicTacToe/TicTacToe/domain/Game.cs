@@ -26,7 +26,7 @@ namespace TicTacToe.domain
         public async void StartGame()
         {
             Random rnd = new Random();
-            while (true)
+            while (!IsBoardFull())
             { 
                 Turn = 0;
                 while (Turn == 0)
@@ -40,6 +40,24 @@ namespace TicTacToe.domain
                     Turn = 0;
                 }
             }
+        }
+
+        public bool checkForWin()
+        {
+            return true;
+        }
+
+        public bool IsBoardFull()
+        {
+            for (int i = 1; i <= GameBoard.Board.Count; i++)
+            {
+                if (GameBoard.Board[i].Free)
+                {
+                    return false;
+                }
+                //Trace.WriteLine("Tile " + i + " is " + GameBoard.Board[i].Free);
+            }
+            return true;
         }
 
         Task WaitForButtonClickAsync()

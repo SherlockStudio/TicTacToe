@@ -12,9 +12,10 @@ namespace TicTacToe.domain
         private Boolean _isFree;
         private string _content;
 
-        public Tile(string content = "")
+        public Tile()
         {
             _isFree = true;
+            _content = "";
         }
 
         public Boolean Free

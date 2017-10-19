@@ -33,7 +33,7 @@
                 <Image Source="tictactoe.png" />
             </StackPanel>
             <StackPanel Grid.Row="2" Background="BlanchedAlmond">
-                <Button Margin="10" Padding="10" Content="Start game" />
+                <Button Margin="10" Padding="10" Content="Start game" Click="Button_Click_1" />
                 <Button Margin="10, 10, 10, 20" Padding="10" Content="Reset game" />
             </StackPanel>
         </Grid>

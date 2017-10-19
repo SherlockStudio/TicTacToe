@@ -40,19 +40,25 @@ namespace TicTacToe
             if (row == 0) { 
                 var number = col + row + 1;
                 _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
+                _gvm.Game.Turn = 1;
             } else if (row == 1)
             {
                 var number = col + row + 3;
-                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.O;
+                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
+                _gvm.Game.Turn = 1;
             } else if (row == 2)
             {
                 var number = col + row + 5;
                 _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
+                _gvm.Game.Turn = 1;
             }
             
         }
 
-        
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _gvm.Game.StartGame();
+        }
     }
 
     class ContentToImage : IValueConverter

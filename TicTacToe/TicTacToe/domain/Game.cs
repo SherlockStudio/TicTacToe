@@ -14,7 +14,7 @@ namespace TicTacToe.domain
         private GameBoard _gameBoard;
         private static readonly string _x = "X";
         private static readonly string _o = "O";
-        private int _turn;
+        private int _turn = 0;
 
         public Game()
         {
@@ -28,23 +28,26 @@ namespace TicTacToe.domain
             Random rnd = new Random();
             while (!IsBoardFull())
             { 
-                Turn = 0;
-                while (Turn == 0)
+                if (Turn == 0)
                 {
                     await WaitForButtonClickAsync();
+                    if (GameBoard.CheckForWin())
+                    {
+                        Trace.WriteLine("X wint op eerste rij!");
+                    }
                 }
-                while (Turn == 1)
+                if (Turn == 1)
                 {
                     var number = rnd.Next(9) + 1;
                     GameBoard.Board[number].Content = O;
+                    if (GameBoard.CheckForWin())
+                    {
+                        Trace.WriteLine("X wint op eerste rij!");
+                    }
                     Turn = 0;
                 }
             }
-        }
-
-        public bool checkForWin()
-        {
-            return true;
+            Trace.WriteLine("The board is full or you actually won!");
         }
 
         public bool IsBoardFull()
@@ -62,7 +65,7 @@ namespace TicTacToe.domain
 
         Task WaitForButtonClickAsync()
         {
-            return Task.Delay(1);
+            return Task.Delay(100);
         }
 
         public int Turn

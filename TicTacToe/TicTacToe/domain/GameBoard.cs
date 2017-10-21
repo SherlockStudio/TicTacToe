@@ -47,5 +47,19 @@ namespace TicTacToe.domain
         {
             return _board[pos];
         }
+
+        public bool CheckForWin()
+        {
+            return RowOne();
+        }
+
+        private bool RowOne()
+        {
+            if (Board[1].Content.Equals(Board[2].Content) && Board[1].Content.Equals(Board[3].Content) && !Board[1].Content.Equals(""))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

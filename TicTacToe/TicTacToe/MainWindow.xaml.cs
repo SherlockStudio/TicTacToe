@@ -32,52 +32,54 @@ namespace TicTacToe
             this.DataContext = _gvm;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /*private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button button = (Button) sender;
-            int row = Grid.GetRow(button);
-            int col = Grid.GetColumn(button);
-            if (row == 0) { 
-                var number = col + row + 1;
-                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
-                _gvm.Game.Turn = 1;
-            } else if (row == 1)
+            if (!_gvm.IsBoardFull() || !_gvm.Game.GameBoard.CheckForWin())
             {
-                var number = col + row + 3;
-                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
-                _gvm.Game.Turn = 1;
-            } else if (row == 2)
-            {
-                var number = col + row + 5;
-                _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
-                _gvm.Game.Turn = 1;
+                Button button = (Button)sender;
+                int row = Grid.GetRow(button);
+                int col = Grid.GetColumn(button);
+                if (row == 0)
+                {
+                    var number = col + row + 1;
+                    if (_gvm.Game.GameBoard.Board[number].Free)
+                    {
+                        _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
+                        _gvm.Game.Turn = 1;
+                    }
+                }
+                else if (row == 1)
+                {
+                    var number = col + row + 3;
+                    if (_gvm.Game.GameBoard.Board[number].Free)
+                    {
+                        _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
+                        _gvm.Game.Turn = 1;
+                    }
+                }
+                else if (row == 2)
+                {
+                    var number = col + row + 5;
+                    if (_gvm.Game.GameBoard.Board[number].Free)
+                    {
+                        _gvm.Game.GameBoard.Board[number].Content = _gvm.Game.X;
+                        _gvm.Game.Turn = 1;
+                    }
+                }
             }
-            
-        }
+        }*/
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        /*private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            _gvm.Game.StartGame();
-            Button start = (Button)sender;
-            start.IsEnabled = false;
-        }
-    }
+            startButton.IsEnabled = false;
+            resetButton.IsEnabled = true;
+            _gvm.StartGame();
+        }*/
 
-    class ContentToImage : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        /*private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            int content = (int)value;
-            if (content == 0)
-            {
-                return 100;
-            }
-            return 10;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+            resetButton.IsEnabled = false;
+            startButton.IsEnabled = true;
+        }*/
     }
 }

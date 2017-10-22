@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:TicTacToe"
         mc:Ignorable="d"
         Title="MainWindow" Height="375.067" Width="525">
-    <Window.Resources>
-        <local:ContentToImage x:Key="ContentConverter" />
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -33,8 +30,8 @@
                 <Image Source="tictactoe.png" />
             </StackPanel>
             <StackPanel Grid.Row="2" Background="BlanchedAlmond">
-                <Button Margin="10" Padding="10" Content="Start game" Click="Button_Click_1" />
-                <Button Margin="10, 10, 10, 20" Padding="10" Content="Reset game" />
+                <Button x:Name="startButton" Margin="10" Padding="10" Content="Start game" />
+                <Button x:Name="resetButton" Margin="10, 10, 10, 20" Padding="10" Content="Reset game" IsEnabled="False"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
@@ -48,15 +45,15 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Content="{Binding Game.GameBoard.Board[1].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="0" Grid.Column="1" Content="{Binding Game.GameBoard.Board[2].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="0" Grid.Column="2" Content="{Binding Game.GameBoard.Board[3].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="1" Grid.Column="0" Content="{Binding Game.GameBoard.Board[4].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="1" Grid.Column="1" Content="{Binding Game.GameBoard.Board[5].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="1" Grid.Column="2" Content="{Binding Game.GameBoard.Board[6].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="2" Grid.Column="0" Content="{Binding Game.GameBoard.Board[7].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="2" Grid.Column="1" Content="{Binding Game.GameBoard.Board[8].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="2" Grid.Column="2" Content="{Binding Game.GameBoard.Board[9].Content}" Click="Button_Click" FontFamily="Snap ITC" FontSize="48" />
+            <Button x:Name="but1" Grid.Row="0" Grid.Column="0" Content="{Binding Game.GameBoard.Board[1].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button x:Name="but2" Grid.Row="0" Grid.Column="1" Content="{Binding Game.GameBoard.Board[2].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button x:Name="but3" Grid.Row="0" Grid.Column="2" Content="{Binding Game.GameBoard.Board[3].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button Grid.Row="1" Grid.Column="0" Content="{Binding Game.GameBoard.Board[4].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button Grid.Row="1" Grid.Column="1" Content="{Binding Game.GameBoard.Board[5].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button Grid.Row="1" Grid.Column="2" Content="{Binding Game.GameBoard.Board[6].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button Grid.Row="2" Grid.Column="0" Content="{Binding Game.GameBoard.Board[7].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button Grid.Row="2" Grid.Column="1" Content="{Binding Game.GameBoard.Board[8].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button Grid.Row="2" Grid.Column="2" Content="{Binding Game.GameBoard.Board[9].Content}" FontFamily="Snap ITC" FontSize="48" />
         </Grid>
     </Grid>
 </Window>

@@ -23,51 +23,6 @@ namespace TicTacToe.domain
             _gameBoard = new GameBoard();
         }
 
-        public async void StartGame()
-        {
-            Random rnd = new Random();
-            while (!IsBoardFull())
-            { 
-                if (Turn == 0)
-                {
-                    await WaitForButtonClickAsync();
-                    if (GameBoard.CheckForWin())
-                    {
-                        Trace.WriteLine("X wint op eerste rij!");
-                    }
-                }
-                if (Turn == 1)
-                {
-                    var number = rnd.Next(9) + 1;
-                    GameBoard.Board[number].Content = O;
-                    if (GameBoard.CheckForWin())
-                    {
-                        Trace.WriteLine("X wint op eerste rij!");
-                    }
-                    Turn = 0;
-                }
-            }
-            Trace.WriteLine("The board is full or you actually won!");
-        }
-
-        public bool IsBoardFull()
-        {
-            for (int i = 1; i <= GameBoard.Board.Count; i++)
-            {
-                if (GameBoard.Board[i].Free)
-                {
-                    return false;
-                }
-                //Trace.WriteLine("Tile " + i + " is " + GameBoard.Board[i].Free);
-            }
-            return true;
-        }
-
-        Task WaitForButtonClickAsync()
-        {
-            return Task.Delay(100);
-        }
-
         public int Turn
         {
             get { return _turn; }

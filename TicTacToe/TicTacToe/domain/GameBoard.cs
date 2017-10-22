@@ -50,12 +50,30 @@ namespace TicTacToe.domain
 
         public bool CheckForWin()
         {
-            return RowOne();
+            return RowOne() || RowTwo() || RowThree();
         }
 
         private bool RowOne()
         {
             if (Board[1].Content.Equals(Board[2].Content) && Board[1].Content.Equals(Board[3].Content) && !Board[1].Content.Equals(""))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool RowTwo()
+        {
+            if (Board[4].Content.Equals(Board[5].Content) && Board[4].Content.Equals(Board[6].Content) && !Board[4].Content.Equals(""))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool RowThree()
+        {
+            if (Board[7].Content.Equals(Board[8].Content) && Board[7].Content.Equals(Board[9].Content) && !Board[7].Content.Equals(""))
             {
                 return true;
             }

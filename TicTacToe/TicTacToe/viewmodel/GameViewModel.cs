@@ -16,6 +16,7 @@ namespace TicTacToe.viewmodel
         private Game _game;
         private ICommand startGame;
         private ICommand placeTile;
+        private ICommand resetGame;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public GameViewModel()
@@ -23,6 +24,7 @@ namespace TicTacToe.viewmodel
             _game = new Game();
             startGame = new StartGameCommand(this);
             placeTile = new TileCommand(this);
+            resetGame = new ResetCommand(this);
         }
 
         public Game Game
@@ -38,6 +40,11 @@ namespace TicTacToe.viewmodel
         public ICommand PlaceTile
         {
             get { return placeTile; }
+        }
+
+        public ICommand ResetGame
+        {
+            get { return resetGame; }
         }
 
         public bool GameHasStarted {
@@ -115,6 +122,41 @@ namespace TicTacToe.viewmodel
             public void Execute(object parameter)
             {
                 Trace.WriteLine("You clicked tile " + (string)parameter);
+            }
+        }
+
+        private class ResetCommand : ICommand
+        {
+            private GameViewModel _gvm;
+            private bool _canExecute;
+            public event EventHandler CanExecuteChanged;
+
+            public ResetCommand(GameViewModel gvm)
+            {
+                _gvm = gvm;
+                _gvm.PropertyChanged += Reset_PropertyChanged;
+                _canExecute = false;
+            }
+
+            private void Reset_PropertyChanged(object sender, PropertyChangedEventArgs e)
+            {
+                bool newCanExecute = _gvm.GameHasStarted;
+                if (newCanExecute != _canExecute)
+                {
+                    _canExecute = newCanExecute;
+                    CanExecuteChanged?.Invoke(this, new EventArgs());
+                }
+            }
+
+            public bool CanExecute(object parameter)
+            {
+                return _canExecute;
+            }
+
+            public void Execute(object parameter)
+            {
+                _gvm.GameHasStarted = false;
+                Trace.WriteLine("You have resetted the game.");
             }
         }
     }

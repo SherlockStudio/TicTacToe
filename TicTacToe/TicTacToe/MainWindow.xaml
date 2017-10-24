@@ -30,8 +30,8 @@
                 <Image Source="tictactoe.png" />
             </StackPanel>
             <StackPanel Grid.Row="2" Background="BlanchedAlmond">
-                <Button x:Name="startButton" Margin="10" Padding="10" Content="Start game" Command="{Binding StartGame}" CommandParameter="Start"/>
-                <Button x:Name="resetButton" Margin="10, 10, 10, 20" Padding="10" Content="Reset game" IsEnabled="False"/>
+                <Button x:Name="startButton" Margin="10" Padding="10" Content="Start game" Command="{Binding StartGame}" />
+                <Button x:Name="resetButton" Margin="10, 10, 10, 20" Padding="10" Content="Reset game" Command="{Binding ResetGame}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">

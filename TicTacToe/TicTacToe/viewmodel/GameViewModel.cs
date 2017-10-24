@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Media;
 using TicTacToe.domain;
 
 namespace TicTacToe.viewmodel
@@ -11,10 +14,15 @@ namespace TicTacToe.viewmodel
     class GameViewModel
     {
         private Game _game;
+        private ICommand startGame;
+        private ICommand placeTile;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public GameViewModel()
         {
             _game = new Game();
+            startGame = new StartGameCommand(this);
+            placeTile = new TileCommand(this);
         }
 
         public Game Game
@@ -22,59 +30,92 @@ namespace TicTacToe.viewmodel
             get { return _game; }
         }
 
-        public bool StartGame()
+        public ICommand StartGame
         {
-            Random rnd = new Random();
-            while (!IsBoardFull())
+            get { return startGame; }
+        }
+
+        public ICommand PlaceTile
+        {
+            get { return placeTile; }
+        }
+
+        public bool GameHasStarted {
+            get { return _game.GameHasStarted; }
+            set
             {
-                if (Game.Turn == 0)
-                {
-                    if (Game.GameBoard.CheckForWin())
-                    {
-                        return true;
-                    }
-                }
-                if (Game.Turn == 1)
-                {
-                    var number = rnd.Next(9) + 1;
-                    while (!AIPlaceSymbol(number))
-                    {
-                        number = rnd.Next(9) + 1;
-                    }
-                    if (Game.GameBoard.CheckForWin())
-                    {
-                        return true;
-                    }
-                    Game.Turn = 0;
-                }
+                _game.GameHasStarted = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GameHasStarted)));
             }
-            return false;
         }
 
-        public bool AIPlaceSymbol(int number)
+        private class StartGameCommand : ICommand
         {
-            if (Game.GameBoard.Board[number].Free) {
-                Game.GameBoard.Board[number].Content = Game.O;
-                return true;
-            }
-            return false;
-        }
+            public event EventHandler CanExecuteChanged;
+            private GameViewModel _gvm;
+            private bool _canExecute;
 
-        public bool IsBoardFull()
-        {
-            for (int i = 1; i <= Game.GameBoard.Board.Count; i++)
+            public StartGameCommand(GameViewModel gvm)
             {
-                if (Game.GameBoard.Board[i].Free)
+                _gvm = gvm;
+                _gvm.PropertyChanged += Start_PropertyChanged;
+                _canExecute = true;
+            }
+
+            private void Start_PropertyChanged(object sender, PropertyChangedEventArgs e)
+            {
+                bool newCanExecute = !_gvm.GameHasStarted;
+                if (newCanExecute != _canExecute)
                 {
-                    return false;
+                    _canExecute = newCanExecute;
+                    CanExecuteChanged?.Invoke(this, new EventArgs());
                 }
             }
-            return true;
+
+            public bool CanExecute(object parameter)
+            {
+                return _canExecute;
+            }
+
+            public void Execute(object parameter)
+            {
+                _gvm.GameHasStarted = true;
+                Trace.WriteLine("The game has started.");
+            }
         }
 
-        Task WaitForButtonClickAsync()
+        private class TileCommand : ICommand
         {
-            return Task.Delay(100);
+            public event EventHandler CanExecuteChanged;
+            private GameViewModel _gvm;
+            private bool _canExecute;
+
+            public TileCommand(GameViewModel gvm)
+            {
+                _gvm = gvm;
+                _gvm.PropertyChanged += Tile_PropertyChanged;
+                _canExecute = false;
+            }
+
+            private void Tile_PropertyChanged(object sender, PropertyChangedEventArgs e)
+            {
+                bool newCanExecute = _gvm.GameHasStarted;
+                if (newCanExecute != _canExecute)
+                {
+                    _canExecute = newCanExecute;
+                    CanExecuteChanged?.Invoke(this, new EventArgs());
+                }
+            }
+
+            public bool CanExecute(object parameter)
+            {
+                return _canExecute;
+            }
+
+            public void Execute(object parameter)
+            {
+                Trace.WriteLine("You clicked tile " + (string)parameter);
+            }
         }
     }
 }

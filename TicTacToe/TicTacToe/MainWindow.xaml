@@ -30,7 +30,7 @@
                 <Image Source="tictactoe.png" />
             </StackPanel>
             <StackPanel Grid.Row="2" Background="BlanchedAlmond">
-                <Button x:Name="startButton" Margin="10" Padding="10" Content="Start game" />
+                <Button x:Name="startButton" Margin="10" Padding="10" Content="Start game" Command="{Binding StartGame}" CommandParameter="Start"/>
                 <Button x:Name="resetButton" Margin="10, 10, 10, 20" Padding="10" Content="Reset game" IsEnabled="False"/>
             </StackPanel>
         </Grid>
@@ -45,15 +45,15 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button x:Name="but1" Grid.Row="0" Grid.Column="0" Content="{Binding Game.GameBoard.Board[1].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button x:Name="but2" Grid.Row="0" Grid.Column="1" Content="{Binding Game.GameBoard.Board[2].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button x:Name="but3" Grid.Row="0" Grid.Column="2" Content="{Binding Game.GameBoard.Board[3].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="1" Grid.Column="0" Content="{Binding Game.GameBoard.Board[4].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="1" Grid.Column="1" Content="{Binding Game.GameBoard.Board[5].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="1" Grid.Column="2" Content="{Binding Game.GameBoard.Board[6].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="2" Grid.Column="0" Content="{Binding Game.GameBoard.Board[7].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="2" Grid.Column="1" Content="{Binding Game.GameBoard.Board[8].Content}" FontFamily="Snap ITC" FontSize="48" />
-            <Button Grid.Row="2" Grid.Column="2" Content="{Binding Game.GameBoard.Board[9].Content}" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[1].Color}" Grid.Row="0" Grid.Column="0" Content="{Binding Game.GameBoard.Board[1].Content}" Command="{Binding PlaceTile}" CommandParameter="1" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[2].Color}" Grid.Row="0" Grid.Column="1" Content="{Binding Game.GameBoard.Board[2].Content}" Command="{Binding PlaceTile}" CommandParameter="2" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[3].Color}" Grid.Row="0" Grid.Column="2" Content="{Binding Game.GameBoard.Board[3].Content}" Command="{Binding PlaceTile}" CommandParameter="3" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[4].Color}" Grid.Row="1" Grid.Column="0" Content="{Binding Game.GameBoard.Board[4].Content}" Command="{Binding PlaceTile}" CommandParameter="4" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[5].Color}" Grid.Row="1" Grid.Column="1" Content="{Binding Game.GameBoard.Board[5].Content}" Command="{Binding PlaceTile}" CommandParameter="5" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[6].Color}" Grid.Row="1" Grid.Column="2" Content="{Binding Game.GameBoard.Board[6].Content}" Command="{Binding PlaceTile}" CommandParameter="6" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[7].Color}" Grid.Row="2" Grid.Column="0" Content="{Binding Game.GameBoard.Board[7].Content}" Command="{Binding PlaceTile}" CommandParameter="7" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[8].Color}" Grid.Row="2" Grid.Column="1" Content="{Binding Game.GameBoard.Board[8].Content}" Command="{Binding PlaceTile}" CommandParameter="8" FontFamily="Snap ITC" FontSize="48" />
+            <Button Background="{Binding Game.GameBoard.Board[9].Color}" Grid.Row="2" Grid.Column="2" Content="{Binding Game.GameBoard.Board[9].Content}" Command="{Binding PlaceTile}" CommandParameter="9" FontFamily="Snap ITC" FontSize="48" />
         </Grid>
     </Grid>
 </Window>

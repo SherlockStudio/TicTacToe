@@ -15,12 +15,20 @@ namespace TicTacToe.domain
         private static readonly string _x = "X";
         private static readonly string _o = "O";
         private int _turn = 0;
+        private bool _gameHasStarted;
 
         public Game()
         {
             _humanPlayer = new HumanPlayer("Cedric");
             _aiPlayer = new AIPlayer();
             _gameBoard = new GameBoard();
+            _gameHasStarted = false;
+        }
+
+        public bool GameHasStarted
+        {
+            get { return _gameHasStarted; }
+            set { _gameHasStarted = value; }
         }
 
         public int Turn
@@ -56,5 +64,17 @@ namespace TicTacToe.domain
         {
             get { return _o; }
         }
+
+        /*public void Start()
+        {
+            if (Turn == 0)
+            {
+                // HumanPlayer does move
+            }
+            if (Turn == 1)
+            {
+                // AIPlayer does move
+            }
+        }*/
     }
 }

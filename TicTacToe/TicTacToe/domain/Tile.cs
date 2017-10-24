@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace TicTacToe.domain
 {
@@ -11,11 +12,13 @@ namespace TicTacToe.domain
     {
         private Boolean _isFree;
         private string _content;
+        private Brush _color;
 
         public Tile()
         {
             _isFree = true;
             _content = "";
+            _color = Brushes.AliceBlue;
         }
 
         public Boolean Free
@@ -32,6 +35,16 @@ namespace TicTacToe.domain
                 _content = value;
                 _isFree = true;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Content)));
+            }
+        }
+
+        public Brush Color
+        {
+            get { return _color; }
+            set
+            {
+                _color = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Color)));
             }
         }
 

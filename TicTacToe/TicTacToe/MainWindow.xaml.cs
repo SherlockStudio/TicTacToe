@@ -25,6 +25,7 @@ namespace TicTacToe
     public partial class MainWindow : Window
     {
         private GameViewModel _gvm;
+
         public MainWindow()
         {
             InitializeComponent();

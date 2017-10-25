@@ -27,7 +27,7 @@
                 <TextBox Text="{Binding Game.AIPlayer.Name}" />
             </StackPanel>
             <StackPanel Grid.Row="1" Background="OliveDrab">
-                <Image Source="tictactoe.png" />
+                <Label Content="{Binding LabelText}" FontFamily="Snap ITC" FontSize="16" Foreground="White"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Background="BlanchedAlmond">
                 <Button x:Name="startButton" Margin="10" Padding="10" Content="Start game" Command="{Binding StartGame}" />

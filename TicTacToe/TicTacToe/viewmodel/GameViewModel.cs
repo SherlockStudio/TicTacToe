@@ -11,12 +11,13 @@ using TicTacToe.domain;
 
 namespace TicTacToe.viewmodel
 {
-    class GameViewModel
+    class GameViewModel : INotifyPropertyChanged
     {
         private Game _game;
         private ICommand startGame;
         private ICommand placeTile;
         private ICommand resetGame;
+        private string _labelText;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public GameViewModel()
@@ -25,6 +26,7 @@ namespace TicTacToe.viewmodel
             startGame = new StartGameCommand(this);
             placeTile = new TileCommand(this);
             resetGame = new ResetCommand(this);
+            _labelText = "Who's gonna win?";
         }
 
         public Game Game
@@ -53,6 +55,16 @@ namespace TicTacToe.viewmodel
             {
                 _game.GameHasStarted = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GameHasStarted)));
+            }
+        }
+
+        public string LabelText
+        {
+            get { return _labelText; }
+            set
+            {
+                _labelText = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LabelText)));
             }
         }
 
@@ -121,7 +133,52 @@ namespace TicTacToe.viewmodel
 
             public void Execute(object parameter)
             {
-                Trace.WriteLine("You clicked tile " + (string)parameter);
+                // HUMAN PLAYER
+                if (!_gvm.Game.CheckForWin())
+                {
+                    var tile = int.Parse((string)parameter);
+                    if (!_gvm.Game.GameBoard.Board[tile].Free)
+                    {
+                        Trace.WriteLine("You can't place your tile here.");
+                    }
+                    else
+                    {
+                        _gvm.Game.GameBoard.Board[tile].Content = _gvm.Game.X;
+                        Trace.WriteLine("You clicked tile " + tile);
+                        if (_gvm.Game.CheckForWin())
+                        {
+                            Trace.WriteLine("You won!");
+                            _gvm.LabelText = _gvm.Game.HumanPlayer.Name + " wins!";
+                            _canExecute = false;
+                        }
+
+                        // AI PLAYER
+                        if (!_gvm.Game.CheckForWin())
+                        {
+                            if (!_gvm.Game.IsBoardFull())
+                            {
+                                Random rnd = new Random();
+                                var randomTile = rnd.Next(9) + 1;
+                                while (!_gvm.Game.GameBoard.Board[randomTile].Free)
+                                {
+                                    randomTile = rnd.Next(9) + 1;
+                                }
+                                _gvm.Game.GameBoard.Board[randomTile].Content = _gvm.Game.O;
+                                Trace.WriteLine("AI clicked tile " + randomTile);
+                                if (_gvm.Game.CheckForWin())
+                                {
+                                    Trace.WriteLine("The computer won!");
+                                    _gvm.LabelText = _gvm.Game.AIPlayer.Name + " wins!";
+                                    _canExecute = false;
+                                }
+                            }
+                            else
+                            {
+                                Trace.WriteLine("The Game ended in a draw.");
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -156,6 +213,8 @@ namespace TicTacToe.viewmodel
             public void Execute(object parameter)
             {
                 _gvm.GameHasStarted = false;
+                _gvm.Game.ResetBoard();
+                _gvm.LabelText = "Who's gonna win?";
                 Trace.WriteLine("You have resetted the game.");
             }
         }

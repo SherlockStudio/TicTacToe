@@ -22,12 +22,12 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Background="Navy">
                 <Label Content="Player name: " Foreground="White"/>
-                <TextBox Text="{Binding Game.HumanPlayer.Name}"/>
+                <TextBox Text="{Binding Game.HumanPlayer.Name}" Width="150"/>
                 <Label Content="Computer name: " Foreground="White"/>
-                <TextBox Text="{Binding Game.AIPlayer.Name}" />
+                <TextBox Text="{Binding Game.AIPlayer.Name}" Width="150"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Background="OliveDrab">
-                <Label Content="{Binding LabelText}" FontFamily="Snap ITC" FontSize="16" Foreground="White"/>
+                <Label Margin="0,40,0,0" HorizontalAlignment="Center" Content="{Binding LabelText}" FontFamily="Snap ITC" FontSize="16" Foreground="White"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Background="BlanchedAlmond">
                 <Button x:Name="startButton" Margin="10" Padding="10" Content="Start game" Command="{Binding StartGame}" />
